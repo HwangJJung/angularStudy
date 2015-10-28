@@ -9,11 +9,26 @@
  * Main module of the application.
  */
 
-var todoList = [
-  {done : true, title : "Angular 독서"},
-  {done : false , title : "Angular 공부하기"},
-  {done : false, title  :"개인 프로젝트 구성"}
-  ];
-
 angular
-  .module('angularApp', []);
+  .module('angularApp', [
+    'ngCookies',
+    'ngResource',
+    'ngRoute',
+    'ngSanitize',
+    'ui.sortable'
+  ])
+  .config(function ($routeProvider) {
+    //mainCtrl, main.html 설정을 변경한다.
+    $routeProvider
+      .when('/', {
+        templateUrl: 'views/todo.html',
+        controller: 'TodoCtrl',
+      })
+      .when('about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
+      })
+      .otherwise({
+        redirectTo: '/'
+      });
+  });

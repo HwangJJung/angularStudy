@@ -1,0 +1,30 @@
+<!doctype html>
+<html  ng-app="angularApp">
+  <head>
+    <meta charset="utf-8">
+    <title>customEventExample</title>
+    <style media="screen">
+      .ng-scope { border: 1px solid red; padding: 5px;}
+      .msg-list-area {margin: 10px; height: 400px; border: 1px solid black;}
+    </style>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="../bower_components/angular/angular.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      angular.module('angularApp', [])
+      .service("calcul")
+    </script>
+  </head>
+  <body ng-controller="mainCtrl">
+    <div>
+    <p> 이름 : <input type="text" ng-model="newUser.name">, 이메일 :  <input type="text" ng-model="newUser.email"> </p>
+    <button type="button" ng-click="addNewUser(newUser)">Add new User</button>
+    </div>
+    <div class="user-list">
+      <ul>
+        <li ng-repeat="user in users">{{user.name}}, {{user.email}}</li>
+      </ul>
+    </div>
+  </body>
+</html>
