@@ -35,6 +35,7 @@ module.exports = function(config) {
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
+      "app/scripts/**/*.html",
       "test/mock/**/*.js",
       "test/spec/**/*.js"
     ],
@@ -42,6 +43,15 @@ module.exports = function(config) {
     // list of files / patterns to exclude
     exclude: [
     ],
+
+    preprocessors: {
+      'app/scripts/**/*.html': 'ng-html2js'
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/' ,
+      moduleName: 'templates'
+    },
 
     // web server port
     port: 8080,
@@ -61,7 +71,8 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       "karma-phantomjs-launcher",
-      "karma-jasmine"
+      "karma-jasmine",
+      "karma-ng-html2js-preprocessor"
     ],
 
     // Continuous Integration mode

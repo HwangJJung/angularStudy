@@ -8,13 +8,14 @@
  * Controller of the angularApp
  */
 angular.module('angularApp')
-  .controller('TodoCtrl', function ($scope) {
-    $scope.todos = ['Item1','hataeho', 'babo 3'];
+  .controller('TodoCtrl', function ($scope, todoService) {
+    $scope.todos = todoService.getTodo();
+
     $scope.addTodo = function () {
-      $scope.todos.push($scope.todo);
+      todoService.addTodo($scope.todo);
       $scope.todo = '';
     };
     $scope.removeTodo = function (index) {
-      $scope.todos.splice(index,1);
+      todoService.removeTodo(index);
     };
   });

@@ -17,7 +17,17 @@ describe('Controller: TodoCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.todos.length).toBe(3);
+  it('should todos', function () {
+    expect(scope.todos.length).toBe(0);
+  });
+
+  it('should addTodo', function () {
+    scope.addTodo('hi');
+    expect(scope.todos.length).toBe(1);
+  });
+  it('should removeTodo', function () {
+    scope.addTodo('peter');
+    scope.removeTodo(0);
+    expect(scope.todos.length).toBe(0);
   });
 });

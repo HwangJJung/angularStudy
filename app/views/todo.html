@@ -14,11 +14,8 @@
   <p></p>
   <!-- Todo list -->
   <div ui-sortable ng-model="todos">
-    <p class="input-group" ng-repeat="todo in todos" style="padding:5px 10px; cursor: move;">
-      <input type="text" value="{{todo}}" class= "form-control">
-      <span class="input-group-btn">
-        <button class="btn btn-danger" ng-click="removeTodo($index)" aria-label="Remove"></button>
-      </span>
-    </p>
+    <div ng-repeat="todo in todos">
+      <todo></todo>
+    </div>
   </div>
 </div>

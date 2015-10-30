@@ -16,7 +16,8 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    cdnify: 'grunt-google-cdn',
+    protractor: 'grunt-protractor-runner'
   });
 
   // Configurable paths for the application
@@ -392,6 +393,10 @@ module.exports = function (grunt) {
       test: [
         'copy:styles'
       ],
+      e2e_test: [
+        'protractor:chrome',
+        'protractor:safari'
+      ],
       dist: [
         'copy:styles',
         'imagemin',
@@ -404,6 +409,34 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'test/karma.conf.js',
         singleRun: true
+      }
+    },
+
+    //e2e Test settings
+    protractor: {
+      options: {
+        configFile: "test/protractor.conf.js",
+        keepalive: true, // IF false, the grunt process stops when the test fails.
+        noColor: false, // IF true, protractor will not use colors in its output.
+        args: {
+          // Arguments passed to the command.
+        }
+      },
+      chrome: {
+        options: {
+          configFile:  "test/protractor.conf.js",
+          args: {
+            browser: "chrome"
+          }
+        }
+      },
+      safari: {
+        options: {
+          configFile:  "test/protractor.conf.js",
+          args: {
+            browser: "safari"
+          }
+        }
       }
     }
   });
@@ -435,7 +468,8 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+    'karma',
+    'concurrent:e2e_test'
   ]);
 
   grunt.registerTask('build', [
